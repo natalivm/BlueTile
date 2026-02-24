@@ -124,7 +124,7 @@ export default function Home() {
                   New Review
                 </span>
                 <h3 className="font-display text-featured text-white mt-2">
-                  THM — BUY IT <span className="text-compare">OR NOT?</span>
+                  THM — A CALL OPTION <span className="text-compare">ON GOLD</span>
                 </h3>
                 <p className="text-muted text-sm mt-2 font-mono">
                   Int&apos;l Tower Hill Mines &middot; Gold $5,226 &middot; Mkt Cap ~$700M
