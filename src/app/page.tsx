@@ -89,6 +89,12 @@ export default function Home() {
               >
                 NU Analysis
               </Link>
+              <Link
+                href="/thm-review"
+                className="font-mono text-xs tracking-widest uppercase text-muted hover:text-accent-light transition-colors"
+              >
+                THM Review
+              </Link>
             </nav>
           </div>
           {!showForm && (
@@ -158,13 +164,48 @@ export default function Home() {
         </Link>
       </div>
 
+      {/* THM Featured Card */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 mb-10">
+        <Link href="/thm-review" className="block group">
+          <div className="relative overflow-hidden bg-card border border-card-border rounded-lg p-6 sm:p-8 card-glow hover:border-accent/30 transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span className="font-mono text-xs tracking-widest text-accent-light uppercase">
+                  New Review
+                </span>
+                <h3 className="font-display text-[clamp(28px,6vw,44px)] leading-none text-white mt-2">
+                  THM — BUY IT <span className="text-accent-light">OR NOT?</span>
+                </h3>
+                <p className="text-muted text-sm mt-2 font-mono">
+                  Int&apos;l Tower Hill Mines &middot; Gold $5,226 &middot; Mkt Cap ~$700M
+                </p>
+              </div>
+              <div className="shrink-0">
+                <span className="inline-flex items-center gap-2 px-5 py-3 border border-accent/40 text-accent-light font-semibold text-sm rounded uppercase tracking-wide group-hover:bg-accent/10 transition-colors">
+                  Read Review
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </Link>
+      </div>
+
       {/* Mobile nav */}
-      <div className="sm:hidden max-w-5xl mx-auto px-4 mb-6">
+      <div className="sm:hidden max-w-5xl mx-auto px-4 mb-6 flex flex-col gap-2">
         <Link
           href="/nu-analysis"
           className="block text-center font-mono text-xs tracking-widest uppercase text-muted hover:text-accent-light border border-card-border rounded px-4 py-3 transition-colors"
         >
           NU Analysis &rarr;
+        </Link>
+        <Link
+          href="/thm-review"
+          className="block text-center font-mono text-xs tracking-widest uppercase text-muted hover:text-accent-light border border-card-border rounded px-4 py-3 transition-colors"
+        >
+          THM Review &rarr;
         </Link>
       </div>
 

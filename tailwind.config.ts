@@ -21,9 +21,8 @@ const config: Config = {
         muted: "#B8B4CC",
       },
       fontFamily: {
-        sans: ["Outfit", "sans-serif"],
-        display: ["Bebas Neue", "sans-serif"],
-        serif: ["DM Serif Display", "serif"],
+        sans: ["Inter", "sans-serif"],
+        display: ["Syne", "sans-serif"],
         mono: ["IBM Plex Mono", "monospace"],
       },
     },
