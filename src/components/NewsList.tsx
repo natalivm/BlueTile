@@ -22,15 +22,7 @@ function formatDate(iso: string) {
 
 export default function NewsList({ items, onEdit, onDelete }: NewsListProps) {
   if (items.length === 0) {
-    return (
-      <div className="text-center py-20 animate-fade-in">
-        <div className="text-6xl mb-4 opacity-50">📭</div>
-        <h3 className="font-display text-2xl tracking-wide text-white/80 mb-2">NO UPDATES YET</h3>
-        <p className="text-sm text-muted font-mono tracking-wide">
-          Click &quot;Add Update&quot; to publish your first news item.
-        </p>
-      </div>
-    );
+    return null;
   }
 
   return (

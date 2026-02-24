@@ -69,68 +69,18 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Header */}
       <header className="border-b border-card-border bg-surface/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="group">
-              <h1 className="font-display text-3xl tracking-wider text-white group-hover:text-accent-light transition-colors">
-                NEWS UPDATES
-              </h1>
-            </Link>
-            <nav className="hidden sm:flex items-center gap-4">
-              <Link
-                href="/"
-                className="meta-label-xs text-accent-light border-b border-accent-light pb-0.5"
-              >
-                Home
-              </Link>
-              <Link
-                href="/nu-analysis"
-                className="meta-label-xs text-muted hover:text-accent-light transition-colors"
-              >
-                NU Analysis
-              </Link>
-              <Link
-                href="/thm-review"
-                className="meta-label-xs text-muted hover:text-accent-light transition-colors"
-              >
-                THM Review
-              </Link>
-            </nav>
-          </div>
-          {!showForm && (
-            <button
-              onClick={() => setShowForm(true)}
-              className="btn-primary animate-glow-pulse"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-              Add Update
-            </button>
-          )}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4">
         </div>
       </header>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="hero-glow absolute inset-0 pointer-events-none" />
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24 relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative">
           <div className="animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 rounded px-3 py-1.5 mb-6">
-              <span className="w-2 h-2 rounded-full bg-accent-light animate-pulse-dot" />
-              <span className="meta-label-xs text-accent-light">
-                Live Updates
-              </span>
-            </div>
-            <h2 className="font-display text-hero text-white mb-6">
-              FINANCIAL<br />
-              <span className="text-accent-light" style={{ WebkitTextStroke: "1px rgba(255,0,112,0.5)" }}>
-                NEWS
-              </span>
+            <h2 className="font-display text-lg sm:text-xl tracking-wider text-white/80">
+              FINANCIAL REPORT
             </h2>
-            <p className="text-lg sm:text-xl text-white/70 font-light max-w-lg leading-relaxed">
-              Manage and publish your latest financial news and stock analysis.
-            </p>
           </div>
         </div>
       </section>
