@@ -3,10 +3,9 @@
 import { useState } from "react";
 import PresentationLayout from "@/components/PresentationLayout";
 
-const TOTAL = 16;
+const TOTAL = 15;
 
 const labels = [
-  "",
   "01 / 07", "02 / 07", "03 / 07", "04 / 07", "05 / 07", "06 / 07", "07 / 07",
   "VS", "VS 1/4", "VS 2/4", "VS 3/4",
   "STRESS", "ST 1/3", "ST 2/3", "ST 3/3",
@@ -19,58 +18,23 @@ export default function NuAnalysis() {
     <PresentationLayout
       total={TOTAL}
       labels={labels}
-      navLabels={{ 0: "Почати", 7: "NU vs ENVA", 11: "Stress Test" }}
+      navLabels={{ 6: "NU vs ENVA", 10: "Stress Test" }}
       defaultNextLabel="Далі"
       defaultBackLabel="Назад"
     >
       {(current) => (
         <>
-          {/* ═══ SCREEN 0: INTRO ═══ */}
+          {/* ═══ SCREEN 0: THE NUMBERS ═══ */}
           {current === 0 && (
-            <div className="min-h-screen flex flex-col animate-fade-in">
-              <div className="hero-glow absolute inset-0 pointer-events-none" />
-              <div className="screen-content-intro">
-                <div className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 rounded px-3.5 py-2 self-start">
-                  <span className="w-2 h-2 rounded-full bg-accent-light animate-pulse-dot" />
-                  <span className="font-mono text-[13px] tracking-widest">NU · NYSE · NUBANK</span>
-                </div>
-
-                <h1 className="font-display text-hero text-white">
-                  IS IT<br />
-                  <span className="text-accent-light" style={{ WebkitTextStroke: "1px rgba(255,0,112,0.5)" }}>
-                    A BUY?
-                  </span>
-                </h1>
-
-                <div className="divider-gradient" />
-
-                <div className="text-center card-base p-6">
-                  <div className="meta-label-xs text-muted mb-2">Поточна ціна</div>
-                  <div className="font-display text-price-hero text-accent-light animate-flicker">
-                    $16.15
-                  </div>
-                  <div className="meta-label-xs text-muted mt-2">
-                    Forward P/E 27x · ROE 31%
-                  </div>
-                </div>
-
-                <p className="font-display italic text-callout text-accent-light">
-                  Фінансова машина десятиліття — чи бомба сповільненої дії?
-                </p>
-
-                <p className="text-[15px] text-white/40">3 частини · 15 екранів · Тільки факти.</p>
-              </div>
-            </div>
-          )}
-
-          {/* ═══ SCREEN 1: THE NUMBERS ═══ */}
-          {current === 1 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content">
                 <div className="meta-label text-accent-light">Крок 1 / 7 — Реальність</div>
                 <h2 className="font-display text-section text-white">
-                  Q3 2025<br /><span className="text-accent-light">Цифри</span>
+                  NU — <span className="text-accent-light">CURRENT PRICE</span>
                 </h2>
+                <div className="text-right mb-2">
+                  <span className="meta-label-xs text-muted">Q3 2025 Цифри</span>
+                </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {[
@@ -110,14 +74,14 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 2: THE MATH ═══ */}
-          {current === 2 && (
+          {/* ═══ SCREEN 1: THE MATH ═══ */}
+          {current === 1 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content">
                 <div className="meta-label text-accent-light">Крок 2 / 7 — Математика</div>
-                <h2 className="font-display text-section text-white">
-                  Без<br /><span className="text-accent-light">Магії</span>
-                </h2>
+                <div className="text-right mb-2">
+                  <span className="meta-label-xs text-muted">який P/E заслуговує NU?</span>
+                </div>
 
                 <div className="bg-accent/10 border border-accent/30 rounded-md p-5 text-center font-mono text-[clamp(14px,3.5vw,18px)] tracking-wider">
                   Ціна <span className="text-accent-light text-[1.4em]">=</span> EPS <span className="text-accent-light text-[1.4em]">×</span> P/E
@@ -155,25 +119,22 @@ export default function NuAnalysis() {
                   ))}
                 </div>
 
-                <p className="font-display italic text-callout text-accent-light">
-                  Все залежить від одного: який P/E заслуговує NU?
-                </p>
               </div>
             </div>
           )}
 
-          {/* ═══ SCREEN 3: CATALYSTS ═══ */}
-          {current === 3 && (
+          {/* ═══ SCREEN 2: CATALYSTS ═══ */}
+          {current === 2 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content">
                 <div className="meta-label text-accent-light">Крок 3 / 7 — Каталізатори</div>
-                <h2 className="font-display text-subsection text-accent-light">
-                  Каталі-<br />затори
-                </h2>
+                <div className="text-right mb-2">
+                  <span className="meta-label-xs text-muted">Каталізатори</span>
+                </div>
 
                 <div className="card-base p-5 card-glow">
                   {[
-                    { num: "01", title: "Mexico — 2-га S-крива", desc: '13M клієнтів. ARPAC майже як у Бразилії. Cost-to-serve ~$1. CEO: "Могли б бути прибутковими вже зараз — але інвестуємо в масштаб."' },
+                    { num: "01", title: "Mexico — 2-га S-крива", desc: ' 13M клієнтів. ARPAC майже як у Бразилії. Cost-to-serve ~$1. CEO: "Могли б бути прибутковими вже зараз — але інвестуємо в масштаб."' },
                     { num: "02", title: "AI — не для хайпу", desc: "nuFormer дозволяє точніше піднімати кредитні ліміти без росту ризику. Структурна перевага, а не маркетинг." },
                     { num: "03", title: "ROE 31%", desc: "Це рівень, який не дають слабкі банки. Підтверджено без зовнішнього боргу, без субсидій." },
                     { num: "04", title: "83% активних клієнтів", desc: "Не просто рахунки — люди реально користуються. Retention на рівні tech-компаній, не банків." },
@@ -191,13 +152,13 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 4: RISKS ═══ */}
-          {current === 4 && (
+          {/* ═══ SCREEN 3: RISKS ═══ */}
+          {current === 3 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content">
                 <div className="meta-label text-accent-light">Крок 4 / 7 — Ризики</div>
                 <h2 className="font-display text-subsection text-white">
-                  Те, що<br /><span className="text-bear">всі<br />ігно-<br />рують</span>
+                  Те, що <span className="text-bear">всі ігнорують</span>
                 </h2>
 
                 <div className="bg-bear/10 border border-bear/30 rounded-md p-4 flex gap-3 items-start">
@@ -235,8 +196,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 5: THREE SCENARIOS ═══ */}
-          {current === 5 && (
+          {/* ═══ SCREEN 4: THREE SCENARIOS ═══ */}
+          {current === 4 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content">
                 <div className="meta-label text-accent-light">Крок 5 / 7 — Три сценарії</div>
@@ -262,8 +223,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 6: THE QUESTION ═══ */}
-          {current === 6 && (
+          {/* ═══ SCREEN 5: THE QUESTION ═══ */}
+          {current === 5 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content-intro gap-8">
                 <div className="meta-label text-accent-light">Крок 6 / 7 — Твій вибір</div>
@@ -309,8 +270,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 7: VERDICT ═══ */}
-          {current === 7 && (
+          {/* ═══ SCREEN 6: VERDICT ═══ */}
+          {current === 6 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content">
                 <div className="meta-label text-accent-light">Крок 7 / 7 — Вердикт по NU</div>
@@ -357,8 +318,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 8: VS INTRO ═══ */}
-          {current === 8 && (
+          {/* ═══ SCREEN 7: VS INTRO ═══ */}
+          {current === 7 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="hero-glow absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,0,112,0.15) 0%, transparent 70%)" }} />
               <div className="screen-content-intro">
@@ -394,8 +355,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 9: BUSINESS MODELS ═══ */}
-          {current === 9 && (
+          {/* ═══ SCREEN 8: BUSINESS MODELS ═══ */}
+          {current === 8 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content">
                 <div className="meta-label text-accent-light">Порівняння 1 / 3 — Бізнес-моделі</div>
@@ -445,8 +406,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 10: VALUATION ═══ */}
-          {current === 10 && (
+          {/* ═══ SCREEN 9: VALUATION ═══ */}
+          {current === 9 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content">
                 <div className="meta-label text-accent-light">Порівняння 2 / 3 — Valuation + Scorecard</div>
@@ -512,8 +473,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 11: PARALLEL SCENARIOS ═══ */}
-          {current === 11 && (
+          {/* ═══ SCREEN 10: PARALLEL SCENARIOS ═══ */}
+          {current === 10 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content !gap-4">
                 <div className="meta-label text-accent-light">Порівняння 3 / 3 — Parallel Scenarios</div>
@@ -561,8 +522,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 12: STRESS TEST INTRO ═══ */}
-          {current === 12 && (
+          {/* ═══ SCREEN 11: STRESS TEST INTRO ═══ */}
+          {current === 11 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,23,68,0.12) 0%, transparent 70%)" }} />
               <div className="screen-content-intro gap-7">
@@ -597,8 +558,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 13: STRESS 1 & 2 ═══ */}
-          {current === 13 && (
+          {/* ═══ SCREEN 12: STRESS 1 & 2 ═══ */}
+          {current === 12 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content !gap-5">
                 <div className="meta-label text-accent-light">Stress 1 / 3 — P/E Compression + Growth вдвічі</div>
@@ -665,8 +626,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 14: STRESS 3 + IRR ═══ */}
-          {current === 14 && (
+          {/* ═══ SCREEN 13: STRESS 3 + IRR ═══ */}
+          {current === 13 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content !gap-5">
                 <div className="meta-label text-accent-light">Stress 2 / 3 — Credit Cycle + 5-річний IRR</div>
@@ -733,8 +694,8 @@ export default function NuAnalysis() {
             </div>
           )}
 
-          {/* ═══ SCREEN 15: FINAL VERDICT ═══ */}
-          {current === 15 && (
+          {/* ═══ SCREEN 14: FINAL VERDICT ═══ */}
+          {current === 14 && (
             <div className="min-h-screen flex flex-col animate-fade-in">
               <div className="screen-content !gap-5">
                 <div className="meta-label text-accent-light">Stress 3 / 3 — Фінальний вердикт</div>
