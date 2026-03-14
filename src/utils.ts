@@ -43,6 +43,14 @@ export function formatTenure(joinedDate: string): string {
   return `Joined ${years} years ago`;
 }
 
+export function isNewJoiner(joinedDate: string): boolean {
+  const today = new Date();
+  const joined = new Date(joinedDate);
+  const diffMs = today.getTime() - joined.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays >= 0 && diffDays <= 30;
+}
+
 export function formatDate(dateOfBirth: string): string {
   const date = new Date(dateOfBirth);
   return date.toLocaleDateString('en-US', {
