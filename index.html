@@ -7,8 +7,54 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+      #splash.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      #splash-logo {
+        font-family: 'Inter', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: #4f46e5;
+        opacity: 0;
+        transform: translateY(8px);
+        animation: splash-in 0.6s ease forwards;
+      }
+      #splash-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #818cf8;
+        margin-top: 1.2rem;
+        animation: pulse 1s ease-in-out infinite;
+      }
+      @keyframes splash-in {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 1; transform: scale(2.5); }
+      }
+    </style>
   </head>
   <body>
+    <div id="splash">
+      <div id="splash-logo">BlueTile</div>
+      <div id="splash-dot"></div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
