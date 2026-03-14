@@ -1,18 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Employee } from '../data/types';
+import { Employee, DEPT_COLORS } from '../data/types';
 import { getBadgeById } from '../data/badges';
 import { isNewJoiner } from '../utils';
 
 const PHOTO_KEY_PREFIX = 'bluetile-photo-';
 
-const BG_COLORS = [
-  '#6366f1', '#06b6d4', '#f59e0b', '#ec4899',
-  '#10b981', '#8b5cf6', '#ef4444', '#3b82f6',
-];
-
 interface Props {
   employee: Employee;
-  index: number;
   tag: 'birthday' | 'anniversary' | 'new';
 }
 
@@ -22,9 +16,9 @@ const tagConfig = {
   new: { label: '✨ New Joiner', className: 'tag--new' },
 };
 
-const FeaturedCard: React.FC<Props> = ({ employee, index, tag }) => {
+const FeaturedCard: React.FC<Props> = ({ employee, tag }) => {
   const badge = getBadgeById(employee.badgeId);
-  const bgColor = BG_COLORS[index % BG_COLORS.length];
+  const bgColor = DEPT_COLORS[employee.department];
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [customPhoto, setCustomPhoto] = useState<string | null>(null);
   const newJoiner = isNewJoiner(employee.joinedDate);
@@ -50,7 +44,7 @@ const FeaturedCard: React.FC<Props> = ({ employee, index, tag }) => {
   const { label, className } = tagConfig[tag];
 
   return (
-    <div className="featured-card">
+    <div className="featured-card" style={{ '--dept-color': bgColor } as React.CSSProperties}>
       <div className="featured-photo-wrapper" style={{ backgroundColor: bgColor }}>
         <img className="featured-photo" src={photoSrc} alt={employee.name} loading="lazy" />
         <button

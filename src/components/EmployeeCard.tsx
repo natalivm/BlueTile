@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Employee } from '../data/types';
+import { Employee, DEPT_COLORS } from '../data/types';
 import { getBadgeById } from '../data/badges';
 import {
   calculateAge,
@@ -12,18 +12,11 @@ import {
 
 const PHOTO_KEY_PREFIX = 'bluetile-photo-';
 
-const BG_COLORS = [
-  '#6366f1', '#06b6d4', '#f59e0b', '#ec4899',
-  '#10b981', '#8b5cf6', '#ef4444', '#3b82f6',
-  '#14b8a6', '#f97316',
-];
-
 interface Props {
   employee: Employee;
-  index: number;
 }
 
-const EmployeeCard: React.FC<Props> = ({ employee, index }) => {
+const EmployeeCard: React.FC<Props> = ({ employee }) => {
   const badge = getBadgeById(employee.badgeId);
   const age = calculateAge(employee.dateOfBirth);
   const hasBirthday = isBirthdayToday(employee.dateOfBirth);
@@ -31,7 +24,7 @@ const EmployeeCard: React.FC<Props> = ({ employee, index }) => {
   const tenure = formatTenure(employee.joinedDate);
   const anniversaryYears = yearsAtCompany(employee.joinedDate);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const bgColor = BG_COLORS[index % BG_COLORS.length];
+  const bgColor = DEPT_COLORS[employee.department];
 
   const [customPhoto, setCustomPhoto] = useState<string | null>(null);
 
@@ -56,7 +49,7 @@ const EmployeeCard: React.FC<Props> = ({ employee, index }) => {
   const photoSrc = customPhoto || employee.photo;
 
   return (
-    <div className={`card${hasAnniversary ? ' card--anniversary' : ''}${hasBirthday ? ' card--birthday' : ''}`}>
+    <div className={`card${hasAnniversary ? ' card--anniversary' : ''}${hasBirthday ? ' card--birthday' : ''}`} style={{ '--dept-color': bgColor } as React.CSSProperties}>
       {hasAnniversary && (
         <div className="anniversary-stars">
           {Array.from({ length: 10 }).map((_, i) => (

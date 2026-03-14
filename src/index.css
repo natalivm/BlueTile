@@ -369,31 +369,31 @@ body {
   border-radius: var(--radius);
   border: none;
   cursor: pointer;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--dept-color);
   transition: all 0.2s;
   font-family: inherit;
 }
 
 .dept-tab:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--dept-color) 20%, transparent);
-  border-color: var(--dept-color);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--dept-color) 35%, transparent);
+  filter: brightness(1.1);
 }
 
 .dept-emoji {
   font-size: 1.6rem;
+  filter: grayscale(1) brightness(10);
 }
 
 .dept-name {
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--text);
+  color: white;
 }
 
 .dept-count {
   font-size: 0.68rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
 }
 
@@ -528,8 +528,8 @@ body {
   border-radius: 4px;
   font-size: 0.65rem;
   font-weight: 600;
-  background: var(--accent-light);
-  color: var(--accent);
+  background: color-mix(in srgb, var(--dept-color) 15%, transparent);
+  color: var(--dept-color);
   letter-spacing: 0.02em;
 }
 
@@ -647,8 +647,8 @@ body {
   }
 
   .dept-tab { padding: 0.85rem 0.4rem; }
-  .dept-emoji { font-size: 1.3rem; }
-  .dept-name { font-size: 0.72rem; }
+  .dept-emoji { font-size: 1.3rem; filter: grayscale(1) brightness(10); }
+  .dept-name { font-size: 0.72rem; color: white; }
 
   .featured-card { width: 180px; }
 

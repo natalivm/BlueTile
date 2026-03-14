@@ -77,8 +77,8 @@ const AllEmployees: React.FC<Props> = ({ initialDepartment = 'all' }) => {
           </div>
         ) : (
           <div className="grid">
-            {filtered.map((employee, i) => (
-              <EmployeeCard key={employee.id} employee={employee} index={i} />
+            {filtered.map(employee => (
+              <EmployeeCard key={employee.id} employee={employee} />
             ))}
           </div>
         )}
