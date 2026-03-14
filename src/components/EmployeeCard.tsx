@@ -12,11 +12,18 @@ import {
 
 const PHOTO_KEY_PREFIX = 'bluetile-photo-';
 
+const BG_COLORS = [
+  '#6366f1', '#06b6d4', '#f59e0b', '#ec4899',
+  '#10b981', '#8b5cf6', '#ef4444', '#3b82f6',
+  '#14b8a6', '#f97316',
+];
+
 interface Props {
   employee: Employee;
+  index: number;
 }
 
-const EmployeeCard: React.FC<Props> = ({ employee }) => {
+const EmployeeCard: React.FC<Props> = ({ employee, index }) => {
   const badge = getBadgeById(employee.badgeId);
   const age = calculateAge(employee.dateOfBirth);
   const hasBirthday = isBirthdayToday(employee.dateOfBirth);
@@ -24,6 +31,7 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
   const tenure = formatTenure(employee.joinedDate);
   const anniversaryYears = yearsAtCompany(employee.joinedDate);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const bgColor = BG_COLORS[index % BG_COLORS.length];
 
   const [customPhoto, setCustomPhoto] = useState<string | null>(null);
 
@@ -51,13 +59,13 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
     <div className={`card${hasAnniversary ? ' card--anniversary' : ''}${hasBirthday ? ' card--birthday' : ''}`}>
       {hasAnniversary && (
         <div className="anniversary-stars">
-          {Array.from({ length: 8 }).map((_, i) => (
+          {Array.from({ length: 10 }).map((_, i) => (
             <span
               key={i}
               className="star"
               style={{
                 left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                top: `${Math.random() * 60}%`,
                 animationDelay: `${Math.random() * 2}s`,
                 animationDuration: `${1.5 + Math.random() * 1.5}s`,
                 fontSize: `${0.4 + Math.random() * 0.5}rem`,
@@ -69,7 +77,7 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
         </div>
       )}
 
-      <div className="card-photo-wrapper">
+      <div className="card-photo-wrapper" style={{ backgroundColor: bgColor }}>
         <img
           className="card-photo"
           src={photoSrc}
@@ -104,7 +112,10 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
           {hasBirthday && <span className="birthday-cake">🎂</span>}
         </h3>
         <p className="card-title">{employee.title}</p>
-        <div className="card-department">{employee.department}</div>
+        <div className="card-meta">
+          <span className="card-department">{employee.department}</span>
+          <span className="card-location">📍 {employee.location}</span>
+        </div>
 
         {hasAnniversary && (
           <div className="anniversary-banner">
@@ -113,35 +124,23 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
         )}
 
         <div className="card-details">
-          <div className="card-detail">
-            <span className="detail-icon">📍</span>
-            <span>{employee.location}</span>
-          </div>
-          <div className="card-detail">
-            <span className="detail-icon">🎂</span>
-            <span>{formatDate(employee.dateOfBirth)} · {age}</span>
-          </div>
-          <div className="card-detail">
-            <span className="detail-icon">📅</span>
-            <span>{tenure}</span>
-          </div>
+          <span className="card-detail">🎂 {formatDate(employee.dateOfBirth)} · {age}</span>
+          <span className="card-detail">📅 {tenure}</span>
         </div>
 
-        <div className="card-badge">
-          {badge && (
-            <div
-              className="card-badge-inner"
-              style={{
-                backgroundColor: badge.color + '12',
-                color: badge.color,
-                borderColor: badge.color + '30',
-              }}
-            >
-              <span className="badge-emoji">{badge.emoji}</span>
-              <span className="badge-title">{badge.title}</span>
-            </div>
-          )}
-        </div>
+        {badge && (
+          <div
+            className="card-badge"
+            style={{
+              backgroundColor: badge.color + '14',
+              color: badge.color,
+              borderColor: badge.color + '30',
+            }}
+          >
+            <span className="badge-emoji">{badge.emoji}</span>
+            <span className="badge-title">{badge.title}</span>
+          </div>
+        )}
       </div>
     </div>
   );
