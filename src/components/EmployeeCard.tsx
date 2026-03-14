@@ -26,7 +26,7 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
     <div className={`card${hasAnniversary ? ' card--anniversary' : ''}${hasBirthday ? ' card--birthday' : ''}`}>
       {hasAnniversary && (
         <div className="anniversary-stars">
-          {Array.from({ length: 12 }).map((_, i) => (
+          {Array.from({ length: 8 }).map((_, i) => (
             <span
               key={i}
               className="star"
@@ -35,7 +35,7 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
                 top: `${Math.random() * 100}%`,
                 animationDelay: `${Math.random() * 2}s`,
                 animationDuration: `${1.5 + Math.random() * 1.5}s`,
-                fontSize: `${0.5 + Math.random() * 0.8}rem`,
+                fontSize: `${0.4 + Math.random() * 0.5}rem`,
               }}
             >
               ✦
@@ -52,14 +52,10 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
           loading="lazy"
         />
         {hasBirthday && (
-          <div className="birthday-indicator" title="Birthday today!">
-            🎂
-          </div>
+          <div className="birthday-indicator" title="Birthday today!">🎂</div>
         )}
         {hasAnniversary && (
-          <div className="anniversary-indicator" title={`${anniversaryYears} year anniversary!`}>
-            🎉
-          </div>
+          <div className="anniversary-indicator" title={`${anniversaryYears} year anniversary!`}>🎉</div>
         )}
       </div>
 
@@ -68,15 +64,14 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
           {employee.name}
           {hasBirthday && <span className="birthday-cake">🎂</span>}
         </h3>
+        <p className="card-title">{employee.title}</p>
+        <div className="card-department">{employee.department}</div>
 
         {hasAnniversary && (
           <div className="anniversary-banner">
-            🌟 {anniversaryYears} Year Anniversary! 🌟
+            {anniversaryYears} Year Anniversary
           </div>
         )}
-
-        <p className="card-title">{employee.title}</p>
-        <div className="card-department">{employee.department}</div>
 
         <div className="card-details">
           <div className="card-detail">
@@ -84,28 +79,30 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
             <span>{employee.location}</span>
           </div>
           <div className="card-detail">
-            <span className="detail-icon">🎈</span>
-            <span>{formatDate(employee.dateOfBirth)} &middot; {age} yrs</span>
+            <span className="detail-icon">🎂</span>
+            <span>{formatDate(employee.dateOfBirth)} · {age}</span>
           </div>
           <div className="card-detail">
-            <span className="detail-icon">💼</span>
+            <span className="detail-icon">📅</span>
             <span>{tenure}</span>
           </div>
         </div>
 
-        {badge && (
-          <div
-            className="card-badge"
-            style={{
-              backgroundColor: badge.color + '18',
-              color: badge.color,
-              borderColor: badge.color + '40',
-            }}
-          >
-            <span className="badge-emoji">{badge.emoji}</span>
-            <span className="badge-title">{badge.title}</span>
-          </div>
-        )}
+        <div className="card-badge">
+          {badge && (
+            <div
+              className="card-badge-inner"
+              style={{
+                backgroundColor: badge.color + '12',
+                color: badge.color,
+                borderColor: badge.color + '30',
+              }}
+            >
+              <span className="badge-emoji">{badge.emoji}</span>
+              <span className="badge-title">{badge.title}</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
