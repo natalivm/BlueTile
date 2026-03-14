@@ -328,7 +328,7 @@ body {
 
 .featured-title {
   font-size: 0.68rem;
-  color: var(--text-secondary);
+  color: var(--text);
   text-transform: uppercase;
   letter-spacing: 0.03em;
   margin-top: 0.05rem;

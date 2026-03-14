@@ -10,7 +10,7 @@ export const employees: Employee[] = [
     id: 1,
     name: 'Natalia Petrovska',
     title: 'Senior AI Magician',
-    photo: `${BASE}photos/natalia.jpg`,
+    photo: `${BASE}icons/natalia.jpg`,
     dateOfBirth: '1987-04-15',
     location: 'Lviv, Ukraine',
     badgeId: 'guest-star',
