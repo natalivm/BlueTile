@@ -1,11 +1,14 @@
-# NewsUpdates
+# TeamVibes - Employee Directory
 
-A React Native mobile application.
+A fun, modern employee directory with badges, birthday celebrations, and work anniversary effects.
 
 ## Getting Started
 
 ```bash
 npm install
-npx react-native run-ios     # iOS
-npx react-native run-android  # Android
+npm run dev
 ```
+
+## Adding Employee Photos
+
+Place photos in `public/photos/` and reference them as `/photos/filename.jpg` in the employee data.
