@@ -1,4 +1,4 @@
-# TeamVibes - Employee Directory
+# BlueTile - Employee Directory
 
 A fun, modern employee directory with badges, birthday celebrations, and work anniversary effects.
 

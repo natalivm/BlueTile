@@ -46,7 +46,7 @@ const App: React.FC = () => {
         <div className="header-content">
           <div className="header-title-row">
             <h1 className="header-title">
-              <span className="header-logo">✦</span> TeamVibes
+              <span className="header-logo">✦</span> BlueTile
             </h1>
             <span className="header-count">{employees.length} people</span>
           </div>
