@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Employee } from '../data/types';
 import { getBadgeById } from '../data/badges';
 import {
@@ -10,29 +10,62 @@ import {
   yearsAtCompany,
 } from '../utils';
 
+const PHOTO_KEY_PREFIX = 'bluetile-photo-';
+
+const BG_COLORS = [
+  '#6366f1', '#06b6d4', '#f59e0b', '#ec4899',
+  '#10b981', '#8b5cf6', '#ef4444', '#3b82f6',
+  '#14b8a6', '#f97316',
+];
+
 interface Props {
   employee: Employee;
+  index: number;
 }
 
-const EmployeeCard: React.FC<Props> = ({ employee }) => {
+const EmployeeCard: React.FC<Props> = ({ employee, index }) => {
   const badge = getBadgeById(employee.badgeId);
   const age = calculateAge(employee.dateOfBirth);
   const hasBirthday = isBirthdayToday(employee.dateOfBirth);
   const hasAnniversary = isWorkAnniversaryToday(employee.joinedDate);
   const tenure = formatTenure(employee.joinedDate);
   const anniversaryYears = yearsAtCompany(employee.joinedDate);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const bgColor = BG_COLORS[index % BG_COLORS.length];
+
+  const [customPhoto, setCustomPhoto] = useState<string | null>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(PHOTO_KEY_PREFIX + employee.id);
+    if (saved) setCustomPhoto(saved);
+  }, [employee.id]);
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result as string;
+      localStorage.setItem(PHOTO_KEY_PREFIX + employee.id, dataUrl);
+      setCustomPhoto(dataUrl);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const photoSrc = customPhoto || employee.photo;
 
   return (
     <div className={`card${hasAnniversary ? ' card--anniversary' : ''}${hasBirthday ? ' card--birthday' : ''}`}>
       {hasAnniversary && (
         <div className="anniversary-stars">
-          {Array.from({ length: 8 }).map((_, i) => (
+          {Array.from({ length: 10 }).map((_, i) => (
             <span
               key={i}
               className="star"
               style={{
                 left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                top: `${Math.random() * 60}%`,
                 animationDelay: `${Math.random() * 2}s`,
                 animationDuration: `${1.5 + Math.random() * 1.5}s`,
                 fontSize: `${0.4 + Math.random() * 0.5}rem`,
@@ -44,12 +77,26 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
         </div>
       )}
 
-      <div className="card-photo-wrapper">
+      <div className="card-photo-wrapper" style={{ backgroundColor: bgColor }}>
         <img
           className="card-photo"
-          src={employee.photo}
+          src={photoSrc}
           alt={employee.name}
           loading="lazy"
+        />
+        <button
+          className="photo-upload-btn"
+          title="Upload photo"
+          onClick={() => fileInputRef.current?.click()}
+        >
+          +
+        </button>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          className="photo-upload-input"
+          onChange={handlePhotoUpload}
         />
         {hasBirthday && (
           <div className="birthday-indicator" title="Birthday today!">🎂</div>
@@ -65,7 +112,10 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
           {hasBirthday && <span className="birthday-cake">🎂</span>}
         </h3>
         <p className="card-title">{employee.title}</p>
-        <div className="card-department">{employee.department}</div>
+        <div className="card-meta">
+          <span className="card-department">{employee.department}</span>
+          <span className="card-location">📍 {employee.location}</span>
+        </div>
 
         {hasAnniversary && (
           <div className="anniversary-banner">
@@ -74,35 +124,23 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
         )}
 
         <div className="card-details">
-          <div className="card-detail">
-            <span className="detail-icon">📍</span>
-            <span>{employee.location}</span>
-          </div>
-          <div className="card-detail">
-            <span className="detail-icon">🎂</span>
-            <span>{formatDate(employee.dateOfBirth)} · {age}</span>
-          </div>
-          <div className="card-detail">
-            <span className="detail-icon">📅</span>
-            <span>{tenure}</span>
-          </div>
+          <span className="card-detail">🎂 {formatDate(employee.dateOfBirth)} · {age}</span>
+          <span className="card-detail">📅 {tenure}</span>
         </div>
 
-        <div className="card-badge">
-          {badge && (
-            <div
-              className="card-badge-inner"
-              style={{
-                backgroundColor: badge.color + '12',
-                color: badge.color,
-                borderColor: badge.color + '30',
-              }}
-            >
-              <span className="badge-emoji">{badge.emoji}</span>
-              <span className="badge-title">{badge.title}</span>
-            </div>
-          )}
-        </div>
+        {badge && (
+          <div
+            className="card-badge"
+            style={{
+              backgroundColor: badge.color + '14',
+              color: badge.color,
+              borderColor: badge.color + '30',
+            }}
+          >
+            <span className="badge-emoji">{badge.emoji}</span>
+            <span className="badge-title">{badge.title}</span>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -127,8 +127,8 @@ const App: React.FC = () => {
           </div>
         ) : (
           <div className="grid">
-            {filtered.map(employee => (
-              <EmployeeCard key={employee.id} employee={employee} />
+            {filtered.map((employee, i) => (
+              <EmployeeCard key={employee.id} employee={employee} index={i} />
             ))}
           </div>
         )}
