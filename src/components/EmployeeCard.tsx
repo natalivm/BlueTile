@@ -75,6 +75,9 @@ const EmployeeCard: React.FC<Props> = ({ employee }) => {
           </div>
         )}
 
+        <p className="card-title">{employee.title}</p>
+        <div className="card-department">{employee.department}</div>
+
         <div className="card-details">
           <div className="card-detail">
             <span className="detail-icon">📍</span>

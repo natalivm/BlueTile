@@ -141,9 +141,38 @@ body {
   padding: 0.2rem;
 }
 
+.department-select {
+  padding: 0.65rem 0.85rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-family: inherit;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  color: white;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  padding-right: 2rem;
+}
+
+.department-select:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.department-select option {
+  color: #1a1a2e;
+  background: white;
+}
+
 .filter-buttons {
   display: flex;
   gap: 0.4rem;
+  margin-top: 0.6rem;
 }
 
 .filter-btn {
@@ -247,6 +276,24 @@ body {
 .birthday-cake {
   font-size: 1.1rem;
   animation: bounce 1s ease infinite;
+}
+
+.card-title {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.1rem;
+}
+
+.card-department {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: white;
+  letter-spacing: 0.02em;
 }
 
 .card-details {

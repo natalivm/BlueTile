@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { employees } from './data/employees';
+import { departments, Department } from './data/types';
 import EmployeeCard from './components/EmployeeCard';
 import { isBirthdayToday, isWorkAnniversaryToday } from './utils';
 
@@ -8,6 +9,7 @@ type Filter = 'all' | 'birthday' | 'anniversary';
 const App: React.FC = () => {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
+  const [department, setDepartment] = useState<Department | 'all'>('all');
 
   const filtered = useMemo(() => {
     let list = employees;
@@ -18,17 +20,22 @@ const App: React.FC = () => {
       list = list.filter(e => isWorkAnniversaryToday(e.joinedDate));
     }
 
+    if (department !== 'all') {
+      list = list.filter(e => e.department === department);
+    }
+
     if (search.trim()) {
       const q = search.toLowerCase();
       list = list.filter(
         e =>
           e.name.toLowerCase().includes(q) ||
-          e.location.toLowerCase().includes(q),
+          e.location.toLowerCase().includes(q) ||
+          e.title.toLowerCase().includes(q),
       );
     }
 
     return list;
-  }, [search, filter]);
+  }, [search, filter, department]);
 
   const birthdayCount = useMemo(
     () => employees.filter(e => isBirthdayToday(e.dateOfBirth)).length,
@@ -58,7 +65,7 @@ const App: React.FC = () => {
               <input
                 type="text"
                 className="search-input"
-                placeholder="Search by name or location..."
+                placeholder="Search by name, title, or location..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
@@ -69,26 +76,37 @@ const App: React.FC = () => {
               )}
             </div>
 
-            <div className="filter-buttons">
-              <button
-                className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
-                onClick={() => setFilter('all')}
-              >
-                All
-              </button>
-              <button
-                className={`filter-btn ${filter === 'birthday' ? 'active' : ''}`}
-                onClick={() => setFilter('birthday')}
-              >
-                🎂 Birthdays{birthdayCount > 0 && ` (${birthdayCount})`}
-              </button>
-              <button
-                className={`filter-btn ${filter === 'anniversary' ? 'active' : ''}`}
-                onClick={() => setFilter('anniversary')}
-              >
-                🎉 Anniversaries{anniversaryCount > 0 && ` (${anniversaryCount})`}
-              </button>
-            </div>
+            <select
+              className="department-select"
+              value={department}
+              onChange={e => setDepartment(e.target.value as Department | 'all')}
+            >
+              <option value="all">All Departments</option>
+              {departments.map(d => (
+                <option key={d} value={d}>{d}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="filter-buttons">
+            <button
+              className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
+              onClick={() => setFilter('all')}
+            >
+              All
+            </button>
+            <button
+              className={`filter-btn ${filter === 'birthday' ? 'active' : ''}`}
+              onClick={() => setFilter('birthday')}
+            >
+              🎂 Birthdays{birthdayCount > 0 && ` (${birthdayCount})`}
+            </button>
+            <button
+              className={`filter-btn ${filter === 'anniversary' ? 'active' : ''}`}
+              onClick={() => setFilter('anniversary')}
+            >
+              🎉 Anniversaries{anniversaryCount > 0 && ` (${anniversaryCount})`}
+            </button>
           </div>
         </div>
       </header>
