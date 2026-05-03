@@ -58,11 +58,10 @@ body {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('/icons/bg-leaves.jpg');
+  background-image: url('/icons/bg.png');
   background-size: cover;
   background-position: center;
-  background-color: #6b7280;
-  background-blend-mode: multiply;
+  background-color: #2a2520;
 }
 
 .home-bg::after {
