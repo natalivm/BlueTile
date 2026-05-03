@@ -13,6 +13,10 @@ const PROGRESS_TOTAL = 30;
 const LEVEL = 7;
 const CART_BADGE = 1;
 
+function asset(path: string) {
+  return `${import.meta.env.BASE_URL}${path}`;
+}
+
 function getGreeting() {
   const hour = new Date().getHours();
   if (hour < 12) return 'Good Morning';
@@ -26,8 +30,6 @@ export default function GameMenu({ categories, onSelect }: Props) {
 
   return (
     <div className="home-screen">
-      <div className="home-bg" aria-hidden="true" />
-
       <header className="home-top">
         <button className="icon-btn settings-btn" aria-label="Settings">
           <span className="settings-gear">⚙</span>
@@ -66,19 +68,19 @@ export default function GameMenu({ categories, onSelect }: Props) {
 
       <nav className="bottom-nav" aria-label="Primary navigation">
         <button className="nav-item" aria-label="Calendar">
-          <img src="/icons/1.png" alt="" className="nav-icon" onError={iconFallback('📅')} />
+          <img src={asset('icons/1.png')} alt="" className="nav-icon" onError={iconFallback('📅')} />
         </button>
         <button className="nav-item" aria-label="Themes">
-          <img src="/icons/2.png" alt="" className="nav-icon" onError={iconFallback('🌸')} />
+          <img src={asset('icons/2.png')} alt="" className="nav-icon" onError={iconFallback('🌸')} />
         </button>
         <button className="nav-item nav-item-active" aria-label="Home" aria-current="page">
-          <img src="/icons/3.png" alt="" className="nav-icon" onError={iconFallback('🏠')} />
+          <img src={asset('icons/3.png')} alt="" className="nav-icon" onError={iconFallback('🏠')} />
         </button>
         <button className="nav-item" aria-label="Notes">
-          <img src="/icons/4.png" alt="" className="nav-icon" onError={iconFallback('📓')} />
+          <img src={asset('icons/4.png')} alt="" className="nav-icon" onError={iconFallback('📓')} />
         </button>
         <button className="nav-item" aria-label="Shop">
-          <img src="/icons/5.png" alt="" className="nav-icon" onError={iconFallback('🛒')} />
+          <img src={asset('icons/5.png')} alt="" className="nav-icon" onError={iconFallback('🛒')} />
           {CART_BADGE > 0 && <span className="nav-badge">{CART_BADGE}</span>}
         </button>
       </nav>
