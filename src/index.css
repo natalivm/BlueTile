@@ -52,26 +52,22 @@ body {
   position: relative;
   padding: 14px 18px 0;
   overflow: hidden;
-}
-
-.home-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: url('/icons/bg.png');
+  background-color: #2a2520;
+  background-image: url('/BlueTile/icons/bg.png');
   background-size: cover;
   background-position: center;
-  background-color: #2a2520;
 }
 
-.home-bg::after {
+.home-screen::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
 }
 
-.home-screen > *:not(.home-bg) {
+.home-screen > * {
   position: relative;
   z-index: 1;
 }
