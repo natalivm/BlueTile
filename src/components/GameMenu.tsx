@@ -66,19 +66,19 @@ export default function GameMenu({ categories, onSelect }: Props) {
 
       <nav className="bottom-nav" aria-label="Primary navigation">
         <button className="nav-item" aria-label="Calendar">
-          <img src="/icons/nav-calendar.png" alt="" className="nav-icon" onError={iconFallback('📅')} />
+          <img src="/icons/1.png" alt="" className="nav-icon" onError={iconFallback('📅')} />
         </button>
         <button className="nav-item" aria-label="Themes">
-          <img src="/icons/nav-flower.png" alt="" className="nav-icon" onError={iconFallback('🌸')} />
+          <img src="/icons/2.png" alt="" className="nav-icon" onError={iconFallback('🌸')} />
         </button>
         <button className="nav-item nav-item-active" aria-label="Home" aria-current="page">
-          <img src="/icons/nav-home.png" alt="" className="nav-icon" onError={iconFallback('🏠')} />
+          <img src="/icons/3.png" alt="" className="nav-icon" onError={iconFallback('🏠')} />
         </button>
         <button className="nav-item" aria-label="Notes">
-          <img src="/icons/nav-notepad.png" alt="" className="nav-icon" onError={iconFallback('📓')} />
+          <img src="/icons/4.png" alt="" className="nav-icon" onError={iconFallback('📓')} />
         </button>
         <button className="nav-item" aria-label="Shop">
-          <img src="/icons/nav-cart.png" alt="" className="nav-icon" onError={iconFallback('🛒')} />
+          <img src="/icons/5.png" alt="" className="nav-icon" onError={iconFallback('🛒')} />
           {CART_BADGE > 0 && <span className="nav-badge">{CART_BADGE}</span>}
         </button>
       </nav>
